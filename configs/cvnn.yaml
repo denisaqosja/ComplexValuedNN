@@ -1,0 +1,85 @@
+# Data Configuration
+data:
+  dataroot: "Datasets/Measured_Dataset/Data"
+  datatype: "npy"
+  resolving_factor_k: 2
+  range_bins: 128
+  doppler_bins: 256
+  do_sr_range: true
+  do_sr_doppler: true
+  is_data_in_fft_domain: true
+  train_ADC_signal: false
+  apply_window: true
+  window_type: "blackman"
+  complex_data: true
+  is_data_measured: true
+
+  # System Parameters
+  system_parameters:
+    c: 299792458
+    fc: 9040000000        # 9.04e+09
+    fs: 7812500
+    bandwith: 80000000    # 8e+07
+    chirpLen_s: 0.00032   # 3.2e-04
+
+  # Training Configuration
+  train:
+    datadirectory: "train"
+    batch_size: 64
+    num_workers: 1
+    use_shuffle: true
+    data_len: -1
+
+  # Validation Configuration
+  val:
+    datadirectory: "val"
+    batch_size: 64
+    num_workers: 1
+    use_shuffle: false
+    data_len: -1
+  
+  test: 
+    datadirectory: "test"
+    batch_size: 64
+    num_workers: 1
+    use_shuffle: false
+    data_len: -1
+
+
+# Training Configuration
+training:
+  n_epochs: 100
+  device: "cuda"  # "cuda" or "cpu"
+  exp_name: "exp_complex-valued-UNet"
+
+# Optimizer Parameters
+optimizer:
+  type: "AdamW"
+  lr: 0.00005           # 5e-05
+  weight_decay: 0.01  # 1e-0
+  scheduler:
+    type: "plateau"
+    lr_factor: 0.5
+    patience: 5
+  warmup:
+    enabled: true
+    multiplier: 2.0
+    warm_epoch: 10  # n_epochs // 10
+
+# Model Configuration
+model:
+  unet:
+    in_channel: 1
+    out_channel: 1
+    inner_channel: 64
+    channel_mults: [1, 2, 3, 4]
+    attn_res: [2]
+    num_res_blocks: 2
+    dropout: 0.2
+  diffusion:
+    T: 2000
+    beta_start: 0.0001
+    beta_end: 0.02
+
+
+
