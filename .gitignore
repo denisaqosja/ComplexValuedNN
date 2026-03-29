@@ -1,0 +1,12 @@
+ .idea
+*.pyc
+*.npy
+*.pth
+*.pt
+*.png
+*.pkl
+*.tfevents*
+*ubyte*
+__pycache__
+*/tb_logger/
+Datasets/
