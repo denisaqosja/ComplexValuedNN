@@ -3,7 +3,6 @@
 *.npy
 *.pth
 *.pt
-*.png
 *.pkl
 *.tfevents*
 *ubyte*
