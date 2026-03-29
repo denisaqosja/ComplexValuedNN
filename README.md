@@ -102,6 +102,8 @@ Edit the script to specify:
 - Logs metrics to TensorBoard
 - Generates magnitude map visualizations
 
+
+
 ## Model Architecture
 
 ### Complex-Valued UNet
@@ -123,6 +125,14 @@ Output (B, 1, H, W)
 - **modReLU Activation**: Magnitude-phase decoupled ReLU for complex-valued networks
 - **Attention Mechanism**: Spatial focus
 - **Complex Weight Initialization**: Xavier and He uniform initialization adapted for complex-valued tensors
+
+## Results
+
+The model achieves very good reconstruction quality on Range-Doppler maps with:
+- **Phase Preservation**: Phase difference std ≈ 0.02 rad (≈ 1.15°) indicating minimal phase error
+- **Complex Correlation (ρ) > 0.9**: High magnitude and near-zero phase offset showing very good overall reconstruction quality
+
+For detailed visualizations, metrics, and analysis, see **[RESULTS.md](./Results.md)** 
 
 ## Authors
 
